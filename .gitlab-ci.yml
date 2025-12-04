@@ -2,8 +2,8 @@
 # Pipeline Terraform + KICS SAST
 # ================================
 
-# Utilisation de l’image officielle Terraform
-image: hashicorp/terraform:1.6.6
+# Image Terraform + shell Alpine
+image: alpine/terrform:latest
 
 stages:
   - terraform_init
@@ -55,7 +55,7 @@ terraform_apply:
     - terraform_plan
 
 # -------------------------------
-# SAST (IaC - KICS)
+# SAST IaC (KICS)
 # -------------------------------
 include:
   - template: Jobs/SAST-IaC.gitlab-ci.yml
