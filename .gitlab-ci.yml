@@ -2,6 +2,7 @@ stages:
   - terraform_init
   - terraform_plan
   - terraform_apply
+  - test
   - sast
 
 variables:
@@ -42,7 +43,7 @@ terraform_apply:
   needs:
     - terraform_plan
 
+# SAST IaC (KICS)
 include:
   - template: Jobs/SAST-IaC.gitlab-ci.yml
-
 
