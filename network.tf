@@ -18,10 +18,10 @@ resource "azurerm_network_security_group" "nsg" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-# Règle SSH (22)
+# SSH port 22
 resource "azurerm_network_security_rule" "ssh" {
   name                        = "allow-ssh"
-  priority                    = 1001
+  priority                    = 100
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
@@ -33,10 +33,10 @@ resource "azurerm_network_security_rule" "ssh" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
-# Règle HTTP (80)
+# HTTP port 80
 resource "azurerm_network_security_rule" "http" {
   name                        = "allow-http"
-  priority                    = 1002
+  priority                    = 200
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
@@ -48,27 +48,26 @@ resource "azurerm_network_security_rule" "http" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
-# Association NSG <-> Subnet
-resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
+resource "azurerm_subnet_network_security_group_association" "assoc" {
   subnet_id                 = azurerm_subnet.subnet.id
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_public_ip" "pip" {
   name                = var.public_ip_name
-  location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
 }
 
 resource "azurerm_network_interface" "nic" {
   name                = var.nic_name
-  location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
 
   ip_configuration {
-    name                          = "ipconfig1"
+    name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip.id

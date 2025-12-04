@@ -11,6 +11,4 @@ terraform {
 
 provider "azurerm" {
   features {}
-  # Les identifiants viennent des variables d'environnement :
-  # ARM_CLIENT_ID, ARM_CLIENT_SECRET, ARM_TENANT_ID, ARM_SUBSCRIPTION_ID
 }
