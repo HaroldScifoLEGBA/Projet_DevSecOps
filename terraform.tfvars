@@ -1,4 +1,4 @@
-resource_group_name = "gbedossou-legba-rg"
+resource_group_name = "gbedossou.legba-rg"
 vnet_name           = "vnet-dev"
 subnet_name         = "subnet-dev"
 subnet_prefix       = "10.0.1.0/24"
