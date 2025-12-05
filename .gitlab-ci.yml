@@ -1,50 +1,49 @@
-image: alpine:3.18
+image: ubuntu:22.04
 
 stages:
   - terraform_init
   - terraform_plan
   - terraform_apply
-  - test
-  - sast
 
-.variables_install_terraform: &install_terraform |
-  apk add --no-cache curl unzip bash jq
-  curl -L -o terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
-  unzip terraform.zip
-  mv terraform /usr/local/bin/
-  terraform version
+before_script:
+  - apt-get update && apt-get install -y curl unzip gnupg software-properties-common apt-transport-https lsb-release
+
+  # 🟦 Installer Azure CLI
+  - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+  # 🟦 Installer Terraform
+  - curl -sLo terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
+  - unzip terraform.zip
+  - mv terraform /usr/local/bin/
+  - terraform -version
+
+  # 🟦 Login Azure CLI via Service Principal
+  - az login --service-principal \
+      -u "$ARM_CLIENT_ID" \
+      -p "$ARM_CLIENT_SECRET" \
+      --tenant "$ARM_TENANT_ID"
+
+  - az account set --subscription "$ARM_SUBSCRIPTION_ID"
 
 terraform_init:
   stage: terraform_init
   script:
-    - *install_terraform
     - terraform init
   artifacts:
     paths:
-      - .terraform
+      - .terraform/
       - .terraform.lock.hcl
-    expire_in: 1 week
 
 terraform_plan:
   stage: terraform_plan
   script:
-    - *install_terraform
     - terraform plan -out=tfplan
   artifacts:
     paths:
       - tfplan
-    expire_in: 1 week
-  needs:
-    - terraform_init
 
 terraform_apply:
   stage: terraform_apply
   script:
-    - *install_terraform
     - terraform apply -auto-approve tfplan
   when: manual
-  needs:
-    - terraform_plan
-
-include:
-  - template: Jobs/SAST-IaC.gitlab-ci.yml
