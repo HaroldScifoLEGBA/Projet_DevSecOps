@@ -69,17 +69,6 @@ variable "admin_ssh_public_key" {
   description = "SSH public key for the VM"
 }
 
-
-################################
-#  STORAGE ACCOUNT VARIABLES   #
-################################
-
-variable "storage_account_name" {
-  type        = string
-  description = "Unique lowercase name (3–24 chars)"
-}
-
-
 ################################
 #  AZURE AUTHENTICATION (SPN)  #
 ################################
