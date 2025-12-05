@@ -7,3 +7,11 @@ public_ip_name      = "public-ip-dev"
 nic_name            = "nic-dev"
 vm_name             = "vm-dev"
 admin_username      = "azureuser"
+
+
+
+storage_account_name   = "stlegba12345"
+storage_container_name = "appdata"
+
+
+
