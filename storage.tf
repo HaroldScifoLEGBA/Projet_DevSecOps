@@ -10,9 +10,7 @@ resource "azurerm_storage_account" "sa" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                  = var.storage_container_name
+  name                 = var.storage_container_name
+  storage_account_name = azurerm_storage_account.sa.name
   container_access_type = "private"
 }
-
-
-
