@@ -9,8 +9,11 @@ resource "azurerm_storage_account" "sa" {
   allow_nested_items_to_be_public = false
 }
 
+
+
 resource "azurerm_storage_container" "container" {
-  name                  = var.storage_container_name
-  storage_account_name  = azurerm_storage_account.sa.name
+  name                 = var.storage_container_name
+  storage_account_id   = azurerm_storage_account.sa.id
   container_access_type = "private"
 }
+
