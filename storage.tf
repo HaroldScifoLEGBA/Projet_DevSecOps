@@ -5,16 +5,13 @@ resource "azurerm_storage_account" "sa" {
 
   account_tier             = "Standard"
   account_replication_type = "LRS"
-
-  allow_nested_items_to_be_public = false
 }
 
 resource "azurerm_storage_container" "container" {
   name                  = var.storage_container_name
-  storage_account_id = azurerm_storage_account.sa.id
+  storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = "private"
 }
-
 
 resource "azurerm_storage_blob" "message_blob" {
   name                   = "message.txt"
@@ -23,4 +20,3 @@ resource "azurerm_storage_blob" "message_blob" {
   type                   = "Block"
   source_content         = "Bravo Harold Scifo, l’application lit bien le fichier dans le Storage Account !"
 }
-
