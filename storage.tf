@@ -10,7 +10,17 @@ resource "azurerm_storage_account" "sa" {
 }
 
 resource "azurerm_storage_container" "container" {
-  name                 = var.storage_container_name
-  storage_account_name = azurerm_storage_account.sa.name
+  name                  = var.storage_container_name
+  storage_account_id = azurerm_storage_account.sa.id
   container_access_type = "private"
 }
+
+
+resource "azurerm_storage_blob" "message_blob" {
+  name                   = "message.txt"
+  storage_account_name   = azurerm_storage_account.sa.name
+  storage_container_name = azurerm_storage_container.container.name
+  type                   = "Block"
+  source_content         = "Bravo Harold Scifo, l’application lit bien le fichier dans le Storage Account !"
+}
+
