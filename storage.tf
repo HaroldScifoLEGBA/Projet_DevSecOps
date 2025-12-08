@@ -18,5 +18,5 @@ resource "azurerm_storage_blob" "message_blob" {
   storage_account_name   = azurerm_storage_account.sa.name
   storage_container_name = azurerm_storage_container.container.name
   type                   = "Block"
-  source_content         = "Bravo Harold Scifo,je suis application lit bien le fichier dans le Storage Account !"
+  source_content         = "Bravo Harold Scifo,je suis application et je lis bien le fichier dans le Storage Account !"
 }
