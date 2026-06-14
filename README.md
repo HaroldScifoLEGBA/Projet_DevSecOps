@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 # DevSecOps Project (Terraform + GitHub Actions)
 
 ## 📌 Objective
@@ -17,12 +15,12 @@ This project demonstrates:
 
 ## 📁 Project Structure
 
-├── .github/workflows/terraform.yml
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── images/
-└── README.md
+.github/workflows/terraform.yml
+ main.tf
+ variables.tf
+ outputs.tf
+ images/
+ README.md
 
 
 ## 🚀 CI/CD Pipeline (GitHub Actions)
@@ -53,22 +51,6 @@ The pipeline runs automatically on every push and Pull Request.
 Resource Group → VNet → Subnet → VM → Public IP → NSG
 
 
-Azure infrastructure is designed but not deployed (no active subscription).
-
-## 📸 Evidence (Screenshots)
-
-### GitHub Actions Pipeline
-![CI Pipeline](images/pipeline-success.png)
-
-
-### Terraform Plan Execution
-![Terraform Plan](images/terraform-plan.png)
-
-
-### Security Scan (Checkov)
-![Checkov Scan](images/checkov.png)
-
->>>>>>> Stashed changes
 
 ## 🎯 Objective Achievement
 
