@@ -15,15 +15,9 @@ This project demonstrates:
 
 ## 📁 Project Structure
 
-.github/workflows/terraform.yml
- main.tf
- variables.tf
- outputs.tf
- images/
- README.md
-
-
- ├── .github
+```
+.
+├── .github
 │   └── workflows
 │       └── terraform.yml
 ├── main.tf
@@ -31,6 +25,8 @@ This project demonstrates:
 ├── outputs.tf
 ├── images/
 └── README.md
+```
+ 
 
 
 ## 🚀 CI/CD Pipeline (GitHub Actions)
