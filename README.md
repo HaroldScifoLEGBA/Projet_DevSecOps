@@ -69,3 +69,7 @@ Code → Validate → Scan → Plan → Report
 LEGBA Gbèdossou Harold Scifo
 
 DevSecOps 
+
+![
+    
+](image-1.png)
