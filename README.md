@@ -23,6 +23,16 @@ This project demonstrates:
  README.md
 
 
+ ├── .github
+│   └── workflows
+│       └── terraform.yml
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── images/
+└── README.md
+
+
 ## 🚀 CI/CD Pipeline (GitHub Actions)
 
 The pipeline runs automatically on every push and Pull Request.
